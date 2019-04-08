@@ -21,7 +21,7 @@ async def on_ready():
     # 디스코드에는 현재 본인이 어떤 게임을 플레이하는지 보여주는 기능이 있습니다.
     # 이 기능을 사용하여 봇의 상태를 간단하게 출력해줄 수 있습니다.
     #await client.change_presence(game=discord.Game(name="반갑습니다 :D", type=1))
-    await client.change_presence(activity=discord.Game("!커맨드"),status=discord.Status.idle,afk=True)
+    await client.change_presence(activity=discord.Game("!커맨드"),status=discord.Status.idle,afk=False)
 
 # 봇이 새로운 메시지를 수신했을때 동작되는 코드입니다.
 @client.event
@@ -34,14 +34,10 @@ async def on_message(message):
 
     if message.content.startswith('!커맨드'): #만약 해당 메시지가 '!커맨드' 로 시작하는 경우에는
         #await client.send_message(channel, '커맨드') #봇은 해당 채널에 '커맨드' 라고 말합니다.
-        await message.channel.send('!클리어'+'\n!급식'+'\n!김동')
-    elif message.content.startswith('!클리어'):
-        await client.clear()
+        await message.channel.send('!gsm'+'\n!급식'+'\n!김동')
+    elif message.content.startswith('!gsm'):
+        await message.channel.send('http://www.gsm.hs.kr')
     elif message.content.startswith('!급식'):
-        #url=urlopen('http://www.gsm.hs.kr/xboard/board.php?tbnum=8')
-        #html=url.read().decode('utf-8')
-        #soup=bs(html,'html.parser')
-        #cont=soup.find('li',class_="today").find_all('span',class_="content")
         html = urlopen("http://www.gsm.hs.kr/xboard/board.php?tbnum=8").read().decode("utf-8")
         soup = bs(html, "html.parser")
         cal = soup.select("#xb_fm_list > div.calendar > ul > li.today > div > div > div > div > span.content")
@@ -58,22 +54,41 @@ async def on_message(message):
         now=datetime.now()
         if(now.hour<=8):
             #아침식사
-            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : ')
+            msg=''
             for f in foodlist[0]:
-                await message.channel.send(f)
+                msg+=f
+                msg+='\n'
+            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : ')
+            await message.channel.send(msg)
         elif(now.hour<=12):
             #점심식사
-            await message.channel.send(now.month+'/'+now.day+' 점심 식사 : ')
+            msg=''
             for f in foodlist[1]:
-                await message.channel.send(f)
-        else:
+                msg+=f
+                msg+='\n'
+            await message.channel.send(now.month+'/'+now.day+' 점심 식사 : ')
+            await message.channel.send(msg)
+        elif(now.hour<=19):
             #저녁식사
-            await message.channel.send(now.month+'/'+now.day+' 저녁 식사 : ')
+            msg=''
             for f in foodlist[2]:
-                await message.channel.send(f)
+                msg+=f
+                msg+='\n'
+            await message.channel.send(str(now.month)+'/'+str(now.day)+' 저녁 식사 : ')
+            await message.channel.send(msg)
+        else:
+            #다시 아침식사
+            msg=''
+            for f in foodlist[0]:
+                msg+=f
+                msg+='\n'
+            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : ')
+            await message.channel.send(msg)
+            
         
     elif message.content.startswith('!김동'):
         await message.channel.send('국')
+    
         #웹크롤링 급식
     #else: #위의 if에 해당되지 않는 경우
         #await message.channel.send('누물보')
