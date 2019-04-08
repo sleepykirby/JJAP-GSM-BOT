@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from selenium import webdriver
 from datetime import datetime
+from bs4 import BeautifulSoup
 
 client = discord.Client()
 driver=webdriver.Chrome('D:/Drivers')
