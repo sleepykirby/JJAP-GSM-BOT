@@ -43,7 +43,7 @@ async def on_message(message):
         cont=soup.find('li',class_="today").find_all('span',class_="content")
         now=datetime.now()
         if(now.hour<=8):
-            #아침식사ㅇㅇ
+            #아침식사
             await message.channel.send(now.month+'/'+now.day+' 아침 식사 : '+'\n'+cont[0].get_text())
         elif(now.hour<=12):
             #점심식사
