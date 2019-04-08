@@ -2,7 +2,8 @@ import asyncio
 import discord
 from discord.ext import commands
 from datetime import datetime
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bs
+from urllib.request import urlopen
 
 client = discord.Client()
 
@@ -37,20 +38,33 @@ async def on_message(message):
     elif message.content.startswith('!클리어'):
         await client.clear()
     elif message.content.startswith('!급식'):
-        url=urlopen('http://www.gsm.hs.kr/xboard/board.php?tbnum=8')
-        html=url.read().decode('utf-8')
-        soup=bs(html,'html.parser')
-        cont=soup.find('li',class_="today").find_all('span',class_="content")
+        #url=urlopen('http://www.gsm.hs.kr/xboard/board.php?tbnum=8')
+        #html=url.read().decode('utf-8')
+        #soup=bs(html,'html.parser')
+        #cont=soup.find('li',class_="today").find_all('span',class_="content")
+        html = urlopen("http://www.gsm.hs.kr/xboard/board.php?tbnum=8").read().decode("utf-8")
+        soup = bs(html, "html.parser")
+        cal = soup.select("#xb_fm_list > div.calendar > ul > li.today > div > div > div > div > span.content")
+        foodlist=[]
+        for eat in cal:
+            eat = eat.text.split("\n")
+            eat_tmp = []
+            for e in eat:
+                e=e.strip().split()[0]
+                eat_tmp.append(e)
+            del eat_tmp[eat_tmp.index("*"):]
+            foodlist.append(eat_tmp)
+        #print(foodlist)
         now=datetime.now()
         if(now.hour<=8):
             #아침식사
-            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : '+'\n'+cont[0].get_text())
+            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : '+'\n'+foodlist[0].get_text())
         elif(now.hour<=12):
             #점심식사
-            await message.channel.send(now.month+'/'+now.day+' 점심 식사 : '+'\n'+cont[1].get_text())
+            await message.channel.send(now.month+'/'+now.day+' 점심 식사 : '+'\n'+foodlist[1].get_text())
         else:
             #저녁식사
-            await message.channel.send(now.month+'/'+now.day+' 저녁 식사 : '+'\n'+cont[2].get_text())
+            await message.channel.send(now.month+'/'+now.day+' 저녁 식사 : '+'\n'+foodlist[2].get_text())
         
     elif message.content.startswith('!김동')
         await message.channel.send('국')
