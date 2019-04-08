@@ -58,13 +58,19 @@ async def on_message(message):
         now=datetime.now()
         if(now.hour<=8):
             #아침식사
-            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : '+'\n'+foodlist[0])
+            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : ')
+            for f in foodlist[0]:
+                await message.channel.send(f)
         elif(now.hour<=12):
             #점심식사
             await message.channel.send(now.month+'/'+now.day+' 점심 식사 : '+'\n'+foodlist[1])
+            for f in foodlist[1]:
+                await message.channel.send(f)
         else:
             #저녁식사
             await message.channel.send(now.month+'/'+now.day+' 저녁 식사 : '+'\n'+foodlist[2])
+            for f in foodlist[2]:
+                await message.channel.send(f)
         
     elif message.content.startswith('!김동')
         await message.channel.send('국')
