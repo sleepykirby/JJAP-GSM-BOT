@@ -33,7 +33,7 @@ async def on_message(message):
 
     if message.content.startswith('!커맨드'): #만약 해당 메시지가 '!커맨드' 로 시작하는 경우에는
         #await client.send_message(channel, '커맨드') #봇은 해당 채널에 '커맨드' 라고 말합니다.
-        await message.channel.send('!클리어')
+        await message.channel.send('!클리어'+'\n!급식'+'\n!김동')
     elif message.content.startswith('!클리어'):
         await client.clear()
     elif message.content.startswith('!급식'):
