@@ -83,7 +83,7 @@ async def on_message(message):
             for f in foodlist[0]:
                 msg+=f
                 msg+='\n'
-            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : ')
+            await message.channel.send(str(now.month)+'/'+str(now.day)+' 아침 식사 : ')
             await message.channel.send(msg)
             
         
