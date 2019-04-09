@@ -9,7 +9,7 @@ client = discord.Client()
 
 
 # 1-6에서 생성된 토큰을 이곳에 입력해주세요.
-token = "NTU4MTEzMzQ5NDczNDAyODgz.D3Xckg.1mZzNmfdoYk-W0JbXKpM3JESruc"
+token = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 
 # 봇이 구동되었을 때 동작되는 코드입니다.
 @client.event
@@ -58,7 +58,7 @@ async def on_message(message):
             for f in foodlist[0]:
                 msg+=f
                 msg+='\n'
-            await message.channel.send(now.month+'/'+now.day+' 아침 식사 : ')
+            await message.channel.send(str(now.month)+'/'+str(now.day)+' 아침 식사 : ')
             await message.channel.send(msg)
         elif(now.hour<=12):
             #점심식사
@@ -66,7 +66,7 @@ async def on_message(message):
             for f in foodlist[1]:
                 msg+=f
                 msg+='\n'
-            await message.channel.send(now.month+'/'+now.day+' 점심 식사 : ')
+            await message.channel.send(str(now.month)+'/'+str(now.day)+' 점심 식사 : ')
             await message.channel.send(msg)
         elif(now.hour<=19):
             #저녁식사
@@ -88,8 +88,8 @@ async def on_message(message):
         
     elif message.content.startswith('!김동'):
         await message.channel.send('국')
-    
-        #웹크롤링 급식
+    elif message.content.startswith('!동국'):
+        await message.channel.send('!김동국#4726')
     #else: #위의 if에 해당되지 않는 경우
         #await message.channel.send('누물보')
 
