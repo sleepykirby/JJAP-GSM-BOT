@@ -46,9 +46,10 @@ async def on_message(message):
             eat = eat.text.split("\n")
             eat_tmp = []
             for e in eat:
-                e=e.strip().split()[0]
+                e=e.strip().split()[0].strip("/")
                 eat_tmp.append(e)
-            del eat_tmp[eat_tmp.index("*"):]
+            if eat_tmp.count("*") > 0:
+                del eat_tmp[eat_tmp.index("*"):]
             foodlist.append(eat_tmp)
         #print(foodlist)
         now=datetime.now()
