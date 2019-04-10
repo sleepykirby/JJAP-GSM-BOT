@@ -11,7 +11,9 @@ client = discord.Client()
 # 1-6에서 생성된 토큰을 이곳에 입력해주세요.
 token = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 
-conch=false
+conch='none'
+dap=[]
+
 
 # 봇이 구동되었을 때 동작되는 코드입니다.
 @client.event
@@ -94,15 +96,23 @@ async def on_message(message):
     elif message.content.startswith('!동국'):
         await message.channel.send('!김동국#4726')
     elif message.content.startswith('!소라고둥'):
-        await message.channel.send('소라고둥 명령어 : \n!s답변추가\n!s답변삭제\n!s질문')
+        await message.channel.send('소라고둥 명령어 : \n!s답변목록\n!s답변추가\n!s답변삭제\n!s질문')
+    elif message.content.startswith('!s답변목록'):
+        msg=''
+        for(d in dap):
+            msg+=d
+            msg+='\n'
+        await message.channel.send(msg)
     elif message.content.startswith('!s답변추가'):
-
+        conch='add'
     elif message.content.startswith('!s답변삭제'):
-
+        conch='del'
     elif message.content.startswith('!s질문'):
 
-    #else: #위의 if에 해당되지 않는 경우
-        #await message.channel.send('누물보')
+    else: #위의 if에 해당되지 않는 경우
+        if conch=='add':
+
+        elif conch=='del':
 
 
 client.run(token)
