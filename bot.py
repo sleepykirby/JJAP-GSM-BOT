@@ -11,8 +11,7 @@ client = discord.Client()
 # 1-6에서 생성된 토큰을 이곳에 입력해주세요.
 token = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 
-conch='none'
-dap=[]
+
 
 
 # 봇이 구동되었을 때 동작되는 코드입니다.
@@ -27,6 +26,8 @@ async def on_ready():
     #await client.change_presence(game=discord.Game(name="반갑습니다 :D", type=1))
     await client.change_presence(activity=discord.Game("!커맨드"),status=discord.Status.idle,afk=False)
 
+conch='none'
+dap=['예','아니오']
 # 봇이 새로운 메시지를 수신했을때 동작되는 코드입니다.
 @client.event
 async def on_message(message):
@@ -105,19 +106,22 @@ async def on_message(message):
         await message.channel.send(msg)
     elif message.content.startswith('!s답변추가'):
         conch='add'
+        await message.channel.send('답변을 추가합니다 '+conch)
     elif message.content.startswith('!s답변삭제'):
         conch='del'
+        await message.channel.send('답변을 삭제합니다 '+conch)
     elif message.content.startswith('!s질문'):
         conch='q'
+        await message.channel.send('질문을 받습니다 '+conch)
     else: #위의 if에 해당되지 않는 경우
         if conch=='add':
             dap.append(message.content)
-            conch='none'
+            
         elif conch=='del':
             try:
                 dap.remove(message.content)
-            except expression as identifier:
+            except:
                 message.channel.send('!s답변목록 을 통해 확인해 주세요')
                 pass
-            conch='none'
+        conch='none'
 client.run(token)
