@@ -11,6 +11,8 @@ client = discord.Client()
 # 1-6에서 생성된 토큰을 이곳에 입력해주세요.
 token = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 
+conch=false
+
 # 봇이 구동되었을 때 동작되는 코드입니다.
 @client.event
 async def on_ready():
@@ -34,7 +36,7 @@ async def on_message(message):
 
     if message.content.startswith('!커맨드'): #만약 해당 메시지가 '!커맨드' 로 시작하는 경우에는
         #await client.send_message(channel, '커맨드') #봇은 해당 채널에 '커맨드' 라고 말합니다.
-        await message.channel.send('!gsm'+'\n!급식'+'\n!김동')
+        await message.channel.send('!gsm'+'\n!급식'+'\n!김동'+'\n!소라고둥')
     elif message.content.startswith('!gsm'):
         await message.channel.send('http://www.gsm.hs.kr')
     elif message.content.startswith('!급식'):
@@ -92,7 +94,13 @@ async def on_message(message):
     elif message.content.startswith('!동국'):
         await message.channel.send('!김동국#4726')
     elif message.content.startswith('!소라고둥'):
-        
+        await message.channel.send('소라고둥 명령어 : \n!s답변추가\n!s답변삭제\n!s질문')
+    elif message.content.startswith('!s답변추가'):
+
+    elif message.content.startswith('!s답변삭제'):
+
+    elif message.content.startswith('!s질문'):
+
     #else: #위의 if에 해당되지 않는 경우
         #await message.channel.send('누물보')
 
