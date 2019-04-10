@@ -99,7 +99,7 @@ async def on_message(message):
         await message.channel.send('소라고둥 명령어 : \n!s답변목록\n!s답변추가\n!s답변삭제\n!s질문')
     elif message.content.startswith('!s답변목록'):
         msg=''
-        for(d in dap):
+        for d in dap:
             msg+=d
             msg+='\n'
         await message.channel.send(msg)
@@ -108,11 +108,16 @@ async def on_message(message):
     elif message.content.startswith('!s답변삭제'):
         conch='del'
     elif message.content.startswith('!s질문'):
-
+        conch='q'
     else: #위의 if에 해당되지 않는 경우
         if conch=='add':
-
+            dap.append(message.content)
+            conch='none'
         elif conch=='del':
-
-
+            try:
+                dap.remove(message.content)
+            except expression as identifier:
+                message.channel.send('!s답변목록 을 통해 확인해 주세요')
+                pass
+            conch='none'
 client.run(token)
