@@ -91,6 +91,8 @@ async def on_message(message):
         await message.channel.send('국')
     elif message.content.startswith('!동국'):
         await message.channel.send('!김동국#4726')
+    elif message.content.startswith('!소라고둥'):
+        
     #else: #위의 if에 해당되지 않는 경우
         #await message.channel.send('누물보')
 
