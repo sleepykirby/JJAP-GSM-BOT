@@ -115,7 +115,7 @@ async def on_message(message):
         await message.channel.send('질문을 받습니다 '+conch)
     else: #위의 if에 해당되지 않는 경우
         if conch=='add':
-            dap.append(message.content)
+            dap.append(message.content[:])
             
         elif conch=='del':
             try:
