@@ -17,7 +17,7 @@ async def on_read():
 @bot.command(pass_context=True)
 async def hello(ctx):
     print(discord.User.display_name)
-    return await ctx.message.channel.send("Hello World!")
+    return await ctx.send("Hello World!")
 
 @bot.command(pass_context=True)
 async def 급식(ctx):
@@ -36,6 +36,22 @@ async def 급식(ctx):
             del eat_tmp[eat_tmp.index("*"):]
         foodlist.append(eat_tmp)
     now=datetime.now()
-    
+
+
+@bot.command(pass_context=True)
+async def test(ctx,arg):
+    await ctx.send(arg)
+
+@bot.command()
+async def 노동요(ctx,arg1,arg2):
+    if(arg1=="add"):
+        await ctx.send("노동요 추가 : "+arg2)
+    if(arg1=="del"):
+        await ctx.send("노동요 삭제 : "+arg2)
+
+@bot.command()
+async def 노동요(ctx,arg1):
+    if(arg1=="help"):
+        await ctx.send("도움말")
 
 bot.run(BOT_TOKEN)
