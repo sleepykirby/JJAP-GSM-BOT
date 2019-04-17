@@ -39,14 +39,25 @@ async def 급식(ctx):
 
 
 @bot.command(pass_context=True)
-async def test(ctx,arg):
-    await ctx.send(arg)
+async def test(ctx,*args):#args는 !명령어 args[0] args[1] args[2] ... 순
+    if(len(args)==1):
+        await ctx.send(args[0])
+    elif(len(args)==3):
+        await ctx.send(args[0]+" "+args[2])
+    else:
+        for l in args:
+            await ctx.send(l)
+            pass
 
-@bot.command()
-async def 노동요(ctx,arg1,arg2):
-    if(arg1=="add"):
-        await ctx.send("노동요 추가 : "+arg2)
-    if(arg1=="del"):
-        await ctx.send("노동요 삭제 : "+arg2)
+@bot.command(pass_context=True)
+async def 소라고둥(ctx,*args):
+    if(len(args)>=2):
+        if(args[1]=='add'):
+            #추가
+        elif(args[1]=='del'):
+            #삭제
+    elif(len(args)==1):
+        if(args[1]=="help"|args[1]=="?"):
+            await ctx.send("")
 
 bot.run(BOT_TOKEN)
