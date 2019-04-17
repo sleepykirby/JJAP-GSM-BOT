@@ -8,6 +8,8 @@ import time
 #import youtube_dl
 from datetime import datetime
 from functools import partial
+from discord import User
+from discord.ext import commands
 
 token = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 
@@ -60,9 +62,12 @@ class JGB(discord.Client):
 
 
     async def command_list(self,message):
-        await self.send_typing(message.channel)
+        # await self.send_typing(message.channel)
         box=discord.Embed(title="JJAP GSM BOT",description=self.DESCRIPTION_MESSAGE,colour=0x7ACDF4)
         box.add_field(name="명령어 목록",value=self.commandDocs)
+        box.set_thumbnail(url="https://i.imgur.com/AGW0xxV.png")
+        #await self.send_message(message.channel,embed=box)
+        await message.channel.send(embed=box)
 
 
 
