@@ -49,9 +49,4 @@ async def 노동요(ctx,arg1,arg2):
     if(arg1=="del"):
         await ctx.send("노동요 삭제 : "+arg2)
 
-@bot.command()
-async def 노동요(ctx,arg1):
-    if(arg1=="help"):
-        await ctx.send("도움말")
-
 bot.run(BOT_TOKEN)
