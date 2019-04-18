@@ -1,9 +1,12 @@
 import asyncio
 import discord
+from discord import File
 from discord.ext import commands
 from datetime import datetime, timedelta
+from PIL import Image
 import secrets
 import sqlite3
+
 
 
 bot=commands.Bot(command_prefix="!")
@@ -17,7 +20,7 @@ BOT_TOKEN = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 @bot.event
 async def on_ready():
     print("Client Logged in")
-    await bot.change_presence(activity=discord.Game("!help"),status=discord.Status.idle,afk=False)
+    await bot.change_presence(activity=discord.Game("!help"),status=discord.Status.idle,afk=True)
 
 
 @bot.command(pass_context=True)
@@ -33,7 +36,7 @@ async def 급식(ctx):
     elif((now.hour*60+now.minute)<1110):#저녁
         시간='저녁'
     else:
-        날짜=str(tomorrow.day)+"("+요일[tomorrow.weekday]+")"
+        날짜=str(tomorrow.day)+"("+요일[tomorrow.weekday()]+")"
         시간='아침'
     print(날짜)
     conn = sqlite3.connect('foodtable.db')
@@ -81,9 +84,9 @@ async def 소라고둥(ctx,*args):
         if(args[1]=="help"|args[1]=="?"):
             await ctx.send("")
 
-# @bot.command(pass_context=True)
-# async def WA(ctx):
-#     file
-#     await ctx.send(file=)
+@bot.command(pass_context=True)
+async def WA(ctx):
+    f=File('./img/WA.png','WA.png')
+    await ctx.send(file=f)
 
 bot.run(BOT_TOKEN)
