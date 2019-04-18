@@ -3,7 +3,6 @@ import discord
 from discord import File
 from discord.ext import commands
 from datetime import datetime, timedelta
-from PIL import Image
 import secrets
 import sqlite3
 
@@ -47,12 +46,7 @@ async def 급식(ctx):
     rlt=cur.fetchone()
     rltlist=rlt[0].split(' ')
     print(rltlist)
-    # msg=''
-    # for r in rlt:
-    #     msg+=r
-    #     msg+='\n'
-    # await ctx.send(msg)
-    급식날짜=str(now.year)+"년 "+str(now.month)+"월 "+날짜+" 식단표"
+    급식날짜=str(now.year)+"년 "+str(now.month)+"월 "+날짜+" "+요일[now.weekday()]+" 식단표"
     급식목록=''
     for r in rltlist:
         급식목록+='- '+r+'\n'
