@@ -14,6 +14,7 @@ token_file=open('../token.txt','r')
 BOT_TOKEN = token_file.read()
 if(BOT_TOKEN):
     print('token read')
+    #token 변경 완료
 
 #변수 목록
 요일=['월','화','수','목','금','토','일']
