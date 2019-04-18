@@ -9,7 +9,7 @@ import sqlite3
 
 
 bot=commands.Bot(command_prefix="!")
-
+bot.remove_command('help')
 BOT_TOKEN = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 
 #변수 목록
@@ -19,7 +19,8 @@ BOT_TOKEN = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
 @bot.event
 async def on_ready():
     print("Client Logged in")
-    await bot.change_presence(activity=discord.Game("!help"),status=discord.Status.idle,afk=True)
+    
+    await bot.change_presence(activity=discord.Game("!help"),status=discord.Status.online,afk=False)
 
 
 @bot.command(pass_context=True)
@@ -35,10 +36,29 @@ async def 급식(ctx):
     elif((now.hour*60+now.minute)<1110):#저녁
         시간='저녁'
     else:
-        날짜=str(tomorrow.day)+"("+요일[tomorrow.weekday()]+")"
+        tws=tomorrow.strftime('%A')
+        if(tws=='Sunday'):
+            tw=6
+        elif(tws=='Monday'):
+            tw=0
+        elif(tws=='Tuesday'):
+            tw=1
+        elif(tws=='Wednesday'):
+            tw=2
+        elif(tws=='Thursday'):
+            tw=3
+        elif(tws=='Friday'):
+            tw=4
+        elif(tws=='Saturday'):
+            tw=5
+        
+        날짜=str(int(tomorrow.strftime('%d')))+"("+요일[tw]+")"
         시간='아침'
     print(날짜)
-    conn = sqlite3.connect('foodtable.db')
+    dbn='foodtable-'
+    dbn+=str(now.year)+'-'+str(now.month)
+    dbn+='.db'
+    conn = sqlite3.connect(dbn)
     cur = conn.cursor()
     sql="SELECT foods FROM ft WHERE date=\'%s\' AND time=\'%s\'"%(날짜,시간)
     print(sql)
@@ -46,7 +66,7 @@ async def 급식(ctx):
     rlt=cur.fetchone()
     rltlist=rlt[0].split(' ')
     print(rltlist)
-    급식날짜=str(now.year)+"년 "+str(now.month)+"월 "+날짜+" "+요일[now.weekday()]+" 식단표"
+    급식날짜=str(now.year)+"년 "+str(now.month)+"월 "+날짜+" "+시간+" 식단표"
     급식목록=''
     for r in rltlist:
         급식목록+='- '+r+'\n'
@@ -79,8 +99,17 @@ async def 소라고둥(ctx,*args):
             await ctx.send("")
 
 @bot.command(pass_context=True)
-async def WA(ctx):
+async def 샌즈(ctx):
     f=File('./img/WA.png','WA.png')
     await ctx.send(file=f)
+
+@bot.command(pass_context=True)
+async def help(ctx):
+    msg=''
+    msg+='- !급식\n'
+    msg+='- !소라고둥\n'
+    msg+='- !샌즈\n'
+    e=discord.Embed(title='JJAP GSM BOT 명령어 목록',description=msg,colour=12777215)
+    await ctx.send(embed=e)
 
 bot.run(BOT_TOKEN)

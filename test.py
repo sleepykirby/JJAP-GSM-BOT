@@ -1,0 +1,20 @@
+from datetime import datetime,timedelta
+요일=['월','화','수','목','금','토','일']
+now=datetime.now()
+tomorrow=now+timedelta(days=1)
+tws=tomorrow.strftime('%A')
+if(tws=='Sunday'):
+    tw=6
+elif(tws=='Monday'):
+    tw=0
+elif(tws=='Tuesday'):
+    tw=1
+elif(tws=='Wednesday'):
+    tw=2
+elif(tws=='Thursday'):
+    tw=3
+elif(tws=='Friday'):
+    tw=4
+elif(tws=='Saturday'):
+    tw=5
+print(str(int(tomorrow.strftime('%d')))+"("+요일[tw]+")")

@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 import urllib.parse
+from datetime import datetime
 
 # # 우리학교 급식 사이트 받아오기
 RSS = "http://www.gsm.hs.kr/xboard/board.php"
@@ -75,8 +76,13 @@ for day in range(len(tablelist)):
             del tablelist[day][eats][tablelist[day][eats].index("*"):]
 
 # # DB 저장
+now=datetime.now()
+# dbn='foodtable-'
+# dbn+=str(now.year)+'-'+str(now.month)
+# dbn+='.db'
+
 import sqlite3
-conn = sqlite3.connect('foodtable.db')
+conn = sqlite3.connect('./foodtable'+'-'+str(now.year)+'-'+str(now.month)+'.db')
 cur = conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS ft')
