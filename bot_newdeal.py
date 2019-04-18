@@ -10,7 +10,10 @@ import sqlite3
 
 bot=commands.Bot(command_prefix="!")
 bot.remove_command('help')
-BOT_TOKEN = "NTU4MTEzMzQ5NDczNDAyODgz.XKvVqQ.zpxrsvOYSzvoMShFSv49Ya92QU4"
+token_file=open('../token.txt','r')
+BOT_TOKEN = token_file.read()
+if(BOT_TOKEN):
+    print('token read')
 
 #변수 목록
 요일=['월','화','수','목','금','토','일']
@@ -24,7 +27,7 @@ async def on_ready():
 
 
 @bot.command(pass_context=True)
-async def 급식(ctx):
+async def 급식(ctx):#냠냠
     
     now=datetime.now()
     tomorrow=now+timedelta(days=1)
@@ -60,14 +63,14 @@ async def 급식(ctx):
     dbn+='.db'
     conn = sqlite3.connect(dbn)
     cur = conn.cursor()
-    sql="SELECT foods FROM ft WHERE date=\'%s\' AND time=\'%s\'"%(날짜,시간)
+    sql="SELECT foods FROM ft WHERE date=\'%s\' AND time=\'%s\'"%(날짜,시간)#sql문 생성
     print(sql)
     cur.execute(sql)
     rlt=cur.fetchone()
     rltlist=rlt[0].split(' ')
     print(rltlist)
-    급식날짜=str(now.year)+"년 "+str(now.month)+"월 "+날짜+" "+시간+" 식단표"
-    급식목록=''
+    급식날짜=str(now.year)+"년 "+str(now.month)+"월 "+날짜+" "+시간+" 식단표"#embed 박스 제목
+    급식목록=''#embed 박스 내용 
     for r in rltlist:
         급식목록+='- '+r+'\n'
     e=discord.Embed(title=급식날짜,description=급식목록,colour=12777215)
@@ -86,7 +89,7 @@ async def test(ctx,*args):#args는 !명령어 args[0] args[1] args[2] ... 순
             pass
 
 @bot.command(pass_context=True)
-async def 소라고둥(ctx,*args):
+async def 소라고둥(ctx,*args):#마법의 소라고둥은 모든 것을 알아요
     if(len(args)>=2):
         if(args[1]=='add'):
             #추가
@@ -99,12 +102,12 @@ async def 소라고둥(ctx,*args):
             await ctx.send("")
 
 @bot.command(pass_context=True)
-async def 샌즈(ctx):
+async def 샌즈(ctx):#와!!
     f=File('./img/WA.png','WA.png')
     await ctx.send(file=f)
 
 @bot.command(pass_context=True)
-async def help(ctx):
+async def help(ctx):#명령어 목록 출력
     msg=''
     msg+='- !급식\n'
     msg+='- !소라고둥\n'
