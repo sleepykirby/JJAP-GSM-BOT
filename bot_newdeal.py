@@ -108,11 +108,36 @@ async def 샌즈(ctx):#와!!
     await ctx.send(file=f)
 
 @bot.command(pass_context=True)
+async def s2048(ctx,arg):
+    if arg=='w':
+        a=a
+    elif arg=='a':
+        a=a
+    elif arg=='s':
+        a=a
+    elif arg=='d':
+        a=a
+    elif arg=='newboard':
+        #newboard()
+        a=a
+
+@bot.command(pass_context=True)
+async def 김동(ctx):
+    await ctx.send("국")
+
+@bot.command(pass_context=True)
+async def 깃헙(ctx):
+    await ctx.send('https://github.com/limeslime/JJAP-GSM-BOT/tree/add_newdeal.py')
+
+@bot.command(pass_context=True)
 async def help(ctx):#명령어 목록 출력
     msg=''
     msg+='- !급식\n'
     msg+='- !소라고둥\n'
+    msg+='- !김동\n'
     msg+='- !샌즈\n'
+    msg+='- !2048\n'
+    msg+='- !깃헙\n'
     e=discord.Embed(title='JJAP GSM BOT 명령어 목록',description=msg,colour=12777215)
     await ctx.send(embed=e)
 
