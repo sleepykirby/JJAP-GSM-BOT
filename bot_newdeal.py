@@ -24,7 +24,7 @@ if(BOT_TOKEN):
 async def on_ready():
     print("Client Logged in")
     
-    await bot.change_presence(activity=discord.Game("!help"),status=discord.Status.online,afk=False)
+    await bot.change_presence(activity=discord.Game("명령어 : !help"),status=discord.Status.online,afk=False)
 
 
 @bot.command(pass_context=True)
@@ -108,7 +108,7 @@ async def 샌즈(ctx):#와!!
     await ctx.send(file=f)
 
 @bot.command(pass_context=True)
-async def s2048(ctx,arg):
+async def _2048(ctx,arg):
     if arg=='w':
         a=a
     elif arg=='a':
@@ -117,7 +117,7 @@ async def s2048(ctx,arg):
         a=a
     elif arg=='d':
         a=a
-    elif arg=='newboard':
+    elif arg=='gg':
         #newboard()
         a=a
 
