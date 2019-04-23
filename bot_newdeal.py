@@ -130,6 +130,10 @@ async def 깃헙(ctx):
     await ctx.send('https://github.com/limeslime/JJAP-GSM-BOT/tree/add_newdeal.py')
 
 @bot.command(pass_context=True)
+async def 짹짹(ctx):
+    await ctx.send('https://twitter.com/k3id_moung')
+
+@bot.command(pass_context=True)
 async def help(ctx):#명령어 목록 출력
     msg=''
     msg+='- !급식\n'
@@ -138,6 +142,7 @@ async def help(ctx):#명령어 목록 출력
     msg+='- !샌즈\n'
     msg+='- !2048\n'
     msg+='- !깃헙\n'
+    msg+='- !짹짹\n'
     e=discord.Embed(title='JJAP GSM BOT 명령어 목록',description=msg,colour=12777215)
     await ctx.send(embed=e)
 
