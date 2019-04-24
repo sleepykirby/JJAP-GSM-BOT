@@ -5,6 +5,7 @@ from discord.ext import commands
 from datetime import datetime, timedelta
 import secrets
 import sqlite3
+#import bot_2048
 
 
 
@@ -108,17 +109,16 @@ async def 샌즈(ctx):#와!!
     await ctx.send(file=f)
 
 @bot.command(pass_context=True)
-async def _2048(ctx,arg):
-    if arg=='w':
+async def _2048(ctx,arg):#갓겜
+    if arg=='w':#위
         a=a
-    elif arg=='a':
+    elif arg=='a':#왼쪽
         a=a
-    elif arg=='s':
+    elif arg=='s':#아래
         a=a
-    elif arg=='d':
+    elif arg=='d':#오른쪽
         a=a
-    elif arg=='gg':
-        #newboard()
+    elif arg=='gg':#리셋
         a=a
 
 @bot.command(pass_context=True)
@@ -129,9 +129,9 @@ async def 김동(ctx):
 async def 깃헙(ctx):
     await ctx.send('https://github.com/limeslime/JJAP-GSM-BOT/tree/add_newdeal.py')
 
-@bot.command(pass_context=True)
-async def 짹짹(ctx):
-    await ctx.send('https://twitter.com/k3id_moung')
+# @bot.command(pass_context=True)
+# async def 짹짹(ctx):
+#     await ctx.send('https://twitter.com/k3id_moung')
 
 @bot.command(pass_context=True)
 async def help(ctx):#명령어 목록 출력
@@ -140,9 +140,9 @@ async def help(ctx):#명령어 목록 출력
     msg+='- !소라고둥\n'
     msg+='- !김동\n'
     msg+='- !샌즈\n'
-    msg+='- !2048\n'
+    msg+='- !_2048\n'
     msg+='- !깃헙\n'
-    msg+='- !짹짹\n'
+    #msg+='- !짹짹\n'
     e=discord.Embed(title='JJAP GSM BOT 명령어 목록',description=msg,colour=12777215)
     await ctx.send(embed=e)
 
