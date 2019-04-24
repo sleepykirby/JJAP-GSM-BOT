@@ -26,7 +26,7 @@ def pressW(board):
             if(board[i-1][j]==0):
                 board[i-1][j]=board[i][j]
                 board[i][j]=0
-            elif(board[i-1][j]==board[i][j])
+            elif((board[i-1][j]==board[i][j])&(board[i][j]!=0)&(board[i-1][j]!=0))
                 board[i-1][j]=board[i-1][j]*2
                 board[i][j]=0
 
