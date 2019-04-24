@@ -21,9 +21,14 @@ def newBoard():
     return board
 
 def pressW(board):
-    for i in range(0,4):
+    for i in range(1,4):
         for j in range(0,4):
-            
+            if(board[i-1][j]==0):
+                board[i-1][j]=board[i][j]
+                board[i][j]=0
+            elif(board[i-1][j]==board[i][j])
+                board[i-1][j]=board[i-1][j]*2
+                board[i][j]=0
 
 # def pressA():
 
