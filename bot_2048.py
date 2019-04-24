@@ -47,7 +47,7 @@ def pressW(board):
                     board[i][j]=0
     newNum(board)#새로운 숫자 생성
     printBoard(board)#콘솔에 출력
-    return(board)#보드 반환
+    return board#보드 반환
 
 def pressA(board):
     for k in range(4):#어쨌든 끝까지 이동
