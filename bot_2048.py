@@ -1,27 +1,38 @@
 #import
 import random
 
+LENGTH = 4
+
 #함수 선언
 
 
 def newBoard():
-    board=[
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0]]#보드 생성
-    board[random.randrange(0,4)][random.randrange(0,4)]=2#첫번째 숫자 생성
-    newNum(board)
+#     board=[
+#         [0,0,0,0],
+#         [0,0,0,0],
+#         [0,0,0,0],
+#         [0,0,0,0]]#보드 생성
+#     board[random.randrange(0,4)][random.randrange(0,4)]=2#첫번째 숫자 생성
+    board = [
+        [0 for j in range(LENGTH)] for i in range(LENGTH)]
+    board=newNum(newNum(board))
     printBoard(board)
     return board
+    
 
 def newNum(board):
-    tmp=random.randrange(0,4)#다음 숫자 세로 위치 생성
-    tmp2=random.randrange(0,4)#다음 숫자 가로 위치 생성
-    while(board[tmp][tmp2]!=0):#지정 위치에 숫자가 있을때
-        tmp=random.randrange(0,4)
-        tmp2=random.randrange(0,4)#위치 변경
-    board[tmp][tmp2]=(random.randrange(0,2)+1)*2#빈 위치에 2 or 4 생성
+#     tmp=random.randrange(0,4)#다음 숫자 세로 위치 생성
+#     tmp2=random.randrange(0,4)#다음 숫자 가로 위치 생성
+#     while(board[tmp][tmp2]!=0):#지정 위치에 숫자가 있을때
+#         tmp=random.randrange(0,4)
+#         tmp2=random.randrange(0,4)#위치 변경
+#     board[tmp][tmp2]=(random.randrange(0,2)+1)*2#빈 위치에 2 or 4 생성
+    empty = [
+        i for i in range(LENGTH ** 2) if board[i // LENGTH][i % LENGTH] == 0]
+    if len(empty) <= 0:
+        return False
+    put = r.choice(empty)
+    board[put // LENGTH][put % LENGTH] = r.choice([2, 2, 2, 2, 4])
     return board
 
 def pressW(board):
