@@ -31,8 +31,8 @@ def newNum(board):
         i for i in range(LENGTH ** 2) if board[i // LENGTH][i % LENGTH] == 0]
     if len(empty) <= 0:
         return False
-    put = r.choice(empty)
-    board[put // LENGTH][put % LENGTH] = r.choice([2, 2, 2, 2, 4])
+    put = random.choice(empty)
+    board[put // LENGTH][put % LENGTH] = random.choice([2, 2, 2, 2, 4])
     return board
 
 def pressW(board):
