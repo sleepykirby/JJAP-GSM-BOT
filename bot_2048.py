@@ -15,7 +15,7 @@ def newBoard():
 #     board[random.randrange(0,4)][random.randrange(0,4)]=2#첫번째 숫자 생성
     board = [
         [0 for j in range(LENGTH)] for i in range(LENGTH)]
-    board=newNum(newNum(board))
+    board = newNum(newNum(board))
     printBoard(board)
     return board
     
