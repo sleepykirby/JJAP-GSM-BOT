@@ -93,12 +93,17 @@ def pressD(board):
     return board#보드 반환
 
 def printBoard(board):
+    for i in range(LENGTH):
+        print("-" * (LENGTH * 6 + 1))
+        for j in range(LENGTH):
+            print("|%5d" % board[i][j], end="")
+        print("|")
+    print("-" * (LENGTH * 6 + 1))
+
     s=''
     for line in board:
-        print(line[0],line[1],line[2],line[3])
-        s+=str(line[0])+' '+str(line[1])+' '+str(line[2])+' '+str(line[3])
+        s+=' '.join(str(line[i]) for i in range(LENGTH))
         s+='\n'
-    print('------')
     return s
 
 
