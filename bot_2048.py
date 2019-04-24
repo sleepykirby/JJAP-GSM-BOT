@@ -1,5 +1,5 @@
 #import
-import random
+import random as r
 
 LENGTH = 4
 
