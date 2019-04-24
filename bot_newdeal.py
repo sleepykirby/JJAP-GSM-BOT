@@ -113,8 +113,9 @@ async def 샌즈(ctx):#와!!
 
 @bot.command(pass_context=True)
 async def _2048(ctx,arg):#갓겜
-    board=self.board
-    if arg=='w':#위
+    if arg=='gg':#리셋
+        board=bot_2048.newBoard()
+    elif arg=='w':#위
         bot_2048.pressW(board)
         e=discord.Embed(title='짭 GSM 봇 2048')
     elif arg=='a':#왼쪽
@@ -123,8 +124,7 @@ async def _2048(ctx,arg):#갓겜
         bot_2048.pressS(board)
     elif arg=='d':#오른쪽
         bot_2048.pressD(board)
-    elif arg=='gg':#리셋
-        board=bot_2048.newBoard()
+    
 
 @bot.command(pass_context=True)
 async def 김동(ctx):
