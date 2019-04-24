@@ -5,7 +5,7 @@ from discord.ext import commands
 from datetime import datetime, timedelta
 import secrets
 import sqlite3
-#import bot_2048
+import bot_2048
 
 
 
@@ -111,7 +111,7 @@ async def 샌즈(ctx):#와!!
 @bot.command(pass_context=True)
 async def _2048(ctx,arg):#갓겜
     if arg=='w':#위
-        a=a
+        
     elif arg=='a':#왼쪽
         a=a
     elif arg=='s':#아래
@@ -119,7 +119,7 @@ async def _2048(ctx,arg):#갓겜
     elif arg=='d':#오른쪽
         a=a
     elif arg=='gg':#리셋
-        a=a
+        board=bot_2048.newBoard()
 
 @bot.command(pass_context=True)
 async def 김동(ctx):

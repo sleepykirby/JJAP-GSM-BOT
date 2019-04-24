@@ -2,7 +2,6 @@
 import random
 
 #함수 선언
-board=[[],[],[],[]]
 
 
 def newBoard():
@@ -18,10 +17,13 @@ def newBoard():
         tmp=random.randrange(0,4)
         tmp2=random.randrange(0,4)
     board[tmp][tmp2]=2
-    printBoard()
+    printBoard(board)
+    return board
 
-# def pressW():
-
+def pressW(board):
+    for i in range(0,4):
+        for j in range(0,4):
+            
 
 # def pressA():
 
@@ -32,9 +34,9 @@ def newBoard():
 # def pressD():
 
 
-def printBoard():
+def printBoard(board):
     for line in board:
-        print(line)
+        print(line[0],line[1],line[2],line[3])
 
 # def numGen():
 
