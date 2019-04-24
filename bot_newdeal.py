@@ -19,6 +19,7 @@ if(BOT_TOKEN):
 
 #변수 목록
 요일=['월','화','수','목','금','토','일']
+board=[]
 
 #봇 커맨드
 @bot.event
@@ -108,16 +109,20 @@ async def 샌즈(ctx):#와!!
     f=File('./img/WA.png','WA.png')
     await ctx.send(file=f)
 
+
+
 @bot.command(pass_context=True)
 async def _2048(ctx,arg):#갓겜
+    board=self.board
     if arg=='w':#위
-        
+        bot_2048.pressW(board)
+        e=discord.Embed(title='짭 GSM 봇 2048')
     elif arg=='a':#왼쪽
-        a=a
+        bot_2048.pressA(board)
     elif arg=='s':#아래
-        a=a
+        bot_2048.pressS(board)
     elif arg=='d':#오른쪽
-        a=a
+        bot_2048.pressD(board)
     elif arg=='gg':#리셋
         board=bot_2048.newBoard()
 
