@@ -109,6 +109,7 @@ def printBoard(board):
         print("|")
     print("-" * (LENGTH * 6 + 1))
 
+
     s = ''
     for line in board:
         s += ' '.join(str(line[i]) for i in range(LENGTH))
