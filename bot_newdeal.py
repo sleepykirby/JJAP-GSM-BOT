@@ -113,20 +113,31 @@ async def 샌즈(ctx):#와!!
     await ctx.send(file=f)
 
 
+@bot.command(pass_context=True)
+async def 와(ctx):#와 샌즈 파피루스!
+    f=File('./img/와샌즈파피루스.gif','WA.gif')
+    await ctx.send(file=f)
 
 @bot.command(pass_context=True)
 async def _2048(ctx,arg):#갓겜
     if arg=='gg':#리셋
         board=bot_2048.newBoard()
     elif arg=='w':#위
-        bot_2048.pressW(board)
-        e=discord.Embed(title='짭 GSM 봇 2048')
+        board=bot_2048.gravity(board,'w')
+        d=bot_2048.printBoard(board)
+        e=discord.Embed(title='짭 GSM 봇 2048',description=d)
     elif arg=='a':#왼쪽
-        bot_2048.pressA(board)
+        board=bot_2048.gravity(board,'a')
+        d=bot_2048.printBoard(board)
+        e=discord.Embed(title='짭 GSM 봇 2048',description=d)
     elif arg=='s':#아래
-        bot_2048.pressS(board)
+        board=bot_2048.gravity(board,'s')
+        d=bot_2048.printBoard(board)
+        e=discord.Embed(title='짭 GSM 봇 2048',description=d)
     elif arg=='d':#오른쪽
-        bot_2048.pressD(board)
+        board=bot_2048.gravity(board,'d')
+        d=bot_2048.printBoard(board)
+        e=discord.Embed(title='짭 GSM 봇 2048',description=d)
     
 
 @bot.command(pass_context=True)
